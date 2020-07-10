@@ -1,0 +1,46 @@
+#!/bin/tcsh -f
+
+# Amtullah Naalwala
+# Computer Project #2 
+# Script 4
+
+
+if ($#argv != 2) then
+  echo "Invalid amount of  arguments, input two arguments!"
+  
+  else if ($1 <= 0) then
+    echo "Incorrect Parameter, print a non-zero integer!"
+
+  else if ($2 != 'A' || $2 != 'C' || $2 != 'T') then 
+    echo "Incorrect parameter, print A for All, C for City, or T for Township!"
+
+#Prints out a list of all the unit census
+    if ($2 == 'A') then
+      echo ''
+      echo "The first $1 unit census data"
+      echo ''
+      cat project02.headers
+      cat /user/cse325/Projects/project02.data | \ 
+      sort -t '|' -k3,3n -k1,1 | head -$1
+      echo '' 
+
+# Prints out a list of the cities
+      else if ($2 == 'C') then
+        echo ''
+        echo "The first $1 unit census data for the cities"
+        echo ''
+        cat project02.headers
+        grep "city" /user/cse325/Projects/project02.data | \
+          sort -t '|' -k3,3n -k1,1 | head -$1
+
+# Prints out a list of the townships
+      else if ($2 == 'T') then 
+        echo ''
+        echo "The first $1 unit census data for the townships"
+        echo ''
+        cat project02.headers
+        grep "township" /user/cse325/Projects/project02.data | \
+          sort -t '|' -k3,3n -k1,1 | head -$1
+
+    endif
+endif

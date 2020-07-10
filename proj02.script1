@@ -1,0 +1,13 @@
+#!/bin/tcsh -f
+
+#Amtullah Naalwala
+#Computer Project 2
+#Script 1
+
+#Getting county name
+  echo ''
+  echo "Unit census for $1 county"
+  echo ''
+  cat project02.headers
+  grep "| $1" /user/cse325/Projects/project02.data | \
+  sort -t '|' -k3,3n -k1,1
